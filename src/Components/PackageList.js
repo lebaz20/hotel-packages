@@ -97,9 +97,9 @@ const PackageList = () => {
           );
           return packageChunks.map((packages) => (
             <Row key={packages[0]._id}>
-              {packages.map((package) => (
-                <Col md={4} key={package._id}>
-                  <PackageItem package={package} onDelete={onDelete} />
+              {packages.map((item) => (
+                <Col md={4} key={item._id}>
+                  <PackageItem package={item} onDelete={onDelete} />
                 </Col>
               ))}
             </Row>

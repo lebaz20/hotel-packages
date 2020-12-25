@@ -1,5 +1,5 @@
 describe("Add package item", () => {
-  const uniqueString = ${new Date().getTime()};
+  const uniqueString = new Date().getTime();
   const uniqueName = `package${uniqueString}`;
   const uniqueDuration = `${uniqueString} nights`;
   const uniqueValidity = `valid till ${uniqueString}`;
