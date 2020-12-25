@@ -7,7 +7,7 @@ docker-compose up -d database backend
 yarn
 ## wait till hasura is fully operational, comment it if not needed.
 sleep 15
-yarn apply-metadata
 yarn apply-migrations
+yarn apply-metadata
 
 docker-compose up frontend

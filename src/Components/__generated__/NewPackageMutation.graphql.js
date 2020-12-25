@@ -9,11 +9,12 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type package_insert_input = {|
-  packageId?: ?number,
+  description?: ?string,
+  duration?: ?string,
   name?: ?string,
-  photo?: ?string,
+  packageId?: ?number,
   price?: ?any,
-  type?: ?string,
+  validity?: ?string,
 |};
 export type NewPackageMutationVariables = {|
   object: package_insert_input
@@ -22,9 +23,10 @@ export type NewPackageMutationResponse = {|
   +insert_package_one: ?{|
     +packageId: number,
     +name: string,
-    +type: string,
+    +duration: string,
+    +validity: string,
+    +description: string,
     +price: any,
-    +photo: string,
   |}
 |};
 export type NewPackageMutation = {|
@@ -40,9 +42,10 @@ mutation NewPackageMutation(
   insert_package_one(object: $object) {
     packageId
     name
-    type
+    duration
+    validity
+    description
     price
-    photo
   }
 }
 */
@@ -88,7 +91,21 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "type",
+            name: "duration",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "validity",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "description",
             storageKey: null,
           },
           {
@@ -96,13 +113,6 @@ const node /*: ConcreteRequest*/ = (function () {
             args: null,
             kind: "ScalarField",
             name: "price",
-            storageKey: null,
-          },
-          {
-            alias: null,
-            args: null,
-            kind: "ScalarField",
-            name: "photo",
             storageKey: null,
           },
         ],
@@ -127,17 +137,17 @@ const node /*: ConcreteRequest*/ = (function () {
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "b60e6cbae673a9e33e534ee6b35cf0f3",
+      cacheID: "25359ba3c0ca966eb0b0f4d9024cbf91",
       id: null,
       metadata: {},
       name: "NewPackageMutation",
       operationKind: "mutation",
       text:
-        "mutation NewPackageMutation(\n  $object: package_insert_input!\n) {\n  insert_package_one(object: $object) {\n    packageId\n    name\n    type\n    price\n    photo\n  }\n}\n",
+        "mutation NewPackageMutation(\n  $object: package_insert_input!\n) {\n  insert_package_one(object: $object) {\n    packageId\n    name\n    duration\n    validity\n    description\n    price\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '42c0b9472b12b7fdb82cb2ae22fb963d';
+(node/*: any*/).hash = '997902be51127afb040229228028e3b8';
 
 module.exports = node;

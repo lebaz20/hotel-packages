@@ -13,9 +13,10 @@ export type PackageListQueryResponse = {|
   +package: $ReadOnlyArray<{|
     +_id: number,
     +name: string,
-    +photo: string,
     +price: any,
-    +type: string,
+    +duration: string,
+    +validity: string,
+    +description: string,
   |}>
 |};
 export type PackageListQuery = {|
@@ -29,9 +30,10 @@ query PackageListQuery {
   package {
     _id: packageId
     name
-    photo
     price
-    type
+    duration
+    validity
+    description
   }
 }
 */
@@ -64,13 +66,6 @@ const node /*: ConcreteRequest*/ = (function () {
           alias: null,
           args: null,
           kind: "ScalarField",
-          name: "photo",
-          storageKey: null,
-        },
-        {
-          alias: null,
-          args: null,
-          kind: "ScalarField",
           name: "price",
           storageKey: null,
         },
@@ -78,7 +73,21 @@ const node /*: ConcreteRequest*/ = (function () {
           alias: null,
           args: null,
           kind: "ScalarField",
-          name: "type",
+          name: "duration",
+          storageKey: null,
+        },
+        {
+          alias: null,
+          args: null,
+          kind: "ScalarField",
+          name: "validity",
+          storageKey: null,
+        },
+        {
+          alias: null,
+          args: null,
+          kind: "ScalarField",
+          name: "description",
           storageKey: null,
         },
       ],
@@ -103,17 +112,17 @@ const node /*: ConcreteRequest*/ = (function () {
       selections: (v0 /*: any*/),
     },
     params: {
-      cacheID: "be925693c454ccf2ef2cd823b5ed035c",
+      cacheID: "2228f514e39a2a696aa3f1cabed55799",
       id: null,
       metadata: {},
       name: "PackageListQuery",
       operationKind: "query",
       text:
-        "query PackageListQuery {\n  package {\n    _id: packageId\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "query PackageListQuery {\n  package {\n    _id: packageId\n    name\n    price\n    duration\n    validity\n    description\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'be8f122004087a6c39f290546b879cbc';
+(node/*: any*/).hash = 'f9cf66e169e3683fbb817eebb27a0622';
 
 module.exports = node;

@@ -9,11 +9,12 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type package_set_input = {|
-  packageId?: ?number,
+  description?: ?string,
+  duration?: ?string,
   name?: ?string,
-  photo?: ?string,
+  packageId?: ?number,
   price?: ?any,
-  type?: ?string,
+  validity?: ?string,
 |};
 export type package_pk_columns_input = {|
   packageId: number
@@ -26,9 +27,10 @@ export type EditPackageMutationResponse = {|
   +update_package_by_pk: ?{|
     +packageId: number,
     +name: string,
-    +photo: string,
     +price: any,
-    +type: string,
+    +duration: string,
+    +validity: string,
+    +description: string,
   |}
 |};
 export type EditPackageMutation = {|
@@ -45,9 +47,10 @@ mutation EditPackageMutation(
   update_package_by_pk(_set: $_set, pk_columns: $pk_columns) {
     packageId
     name
-    photo
     price
-    type
+    duration
+    validity
+    description
   }
 }
 */
@@ -103,13 +106,6 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "photo",
-            storageKey: null,
-          },
-          {
-            alias: null,
-            args: null,
-            kind: "ScalarField",
             name: "price",
             storageKey: null,
           },
@@ -117,7 +113,21 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "type",
+            name: "duration",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "validity",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "description",
             storageKey: null,
           },
         ],
@@ -142,17 +152,17 @@ const node /*: ConcreteRequest*/ = (function () {
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "192ab10c21e73557d7bfdfff0c4ef318",
+      cacheID: "3f2b5a05ef0a1a8c9942203580bf86e4",
       id: null,
       metadata: {},
       name: "EditPackageMutation",
       operationKind: "mutation",
       text:
-        "mutation EditPackageMutation(\n  $_set: package_set_input!\n  $pk_columns: package_pk_columns_input!\n) {\n  update_package_by_pk(_set: $_set, pk_columns: $pk_columns) {\n    packageId\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "mutation EditPackageMutation(\n  $_set: package_set_input!\n  $pk_columns: package_pk_columns_input!\n) {\n  update_package_by_pk(_set: $_set, pk_columns: $pk_columns) {\n    packageId\n    name\n    price\n    duration\n    validity\n    description\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c7bb70ebac6ef9118b659cd70c846d1a';
+(node/*: any*/).hash = 'bf5e39c3240baeb2910aee4a47592f0f';
 
 module.exports = node;

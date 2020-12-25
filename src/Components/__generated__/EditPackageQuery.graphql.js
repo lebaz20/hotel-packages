@@ -15,9 +15,10 @@ export type EditPackageQueryResponse = {|
   +package_by_pk: ?{|
     +_id: number,
     +name: string,
-    +photo: string,
     +price: any,
-    +type: string,
+    +duration: string,
+    +validity: string,
+    +description: string,
   |}
 |};
 export type EditPackageQuery = {|
@@ -33,9 +34,10 @@ query EditPackageQuery(
   package_by_pk(packageId: $packageId) {
     _id: packageId
     name
-    photo
     price
-    type
+    duration
+    validity
+    description
   }
 }
 */
@@ -81,13 +83,6 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "photo",
-            storageKey: null,
-          },
-          {
-            alias: null,
-            args: null,
-            kind: "ScalarField",
             name: "price",
             storageKey: null,
           },
@@ -95,7 +90,21 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "type",
+            name: "duration",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "validity",
+            storageKey: null,
+          },
+          {
+            alias: null,
+            args: null,
+            kind: "ScalarField",
+            name: "description",
             storageKey: null,
           },
         ],
@@ -120,17 +129,17 @@ const node /*: ConcreteRequest*/ = (function () {
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "2f741d111bbdcb4355d0f1a7a7e01588",
+      cacheID: "cdef8abbdd7ab86dd2117620eee65738",
       id: null,
       metadata: {},
       name: "EditPackageQuery",
       operationKind: "query",
       text:
-        "query EditPackageQuery(\n  $packageId: Int!\n) {\n  package_by_pk(packageId: $packageId) {\n    _id: packageId\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "query EditPackageQuery(\n  $packageId: Int!\n) {\n  package_by_pk(packageId: $packageId) {\n    _id: packageId\n    name\n    price\n    duration\n    validity\n    description\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9f7228beba6c6438738920598eb4677b';
+(node/*: any*/).hash = 'a85a2d8e38792ea5a91e491761df172a';
 
 module.exports = node;

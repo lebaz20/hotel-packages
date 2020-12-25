@@ -17,303 +17,6 @@ input Int_comparison_exp {
   _nin: [Int!]
 }
 
-# columns and relationships of "package"
-type package {
-  packageId: Int!
-  name: String!
-  photo: String!
-  price: money!
-  type: String!
-}
-
-# aggregated selection of "package"
-type package_aggregate {
-  aggregate: package_aggregate_fields
-  nodes: [package!]!
-}
-
-# aggregate fields of "package"
-type package_aggregate_fields {
-  avg: package_avg_fields
-  count(columns: [package_select_column!], distinct: Boolean): Int
-  max: package_max_fields
-  min: package_min_fields
-  stddev: package_stddev_fields
-  stddev_pop: package_stddev_pop_fields
-  stddev_samp: package_stddev_samp_fields
-  sum: package_sum_fields
-  var_pop: package_var_pop_fields
-  var_samp: package_var_samp_fields
-  variance: package_variance_fields
-}
-
-# order by aggregate values of table "package"
-input package_aggregate_order_by {
-  avg: package_avg_order_by
-  count: order_by
-  max: package_max_order_by
-  min: package_min_order_by
-  stddev: package_stddev_order_by
-  stddev_pop: package_stddev_pop_order_by
-  stddev_samp: package_stddev_samp_order_by
-  sum: package_sum_order_by
-  var_pop: package_var_pop_order_by
-  var_samp: package_var_samp_order_by
-  variance: package_variance_order_by
-}
-
-# input type for inserting array relation for remote table "package"
-input package_arr_rel_insert_input {
-  data: [package_insert_input!]!
-  on_conflict: package_on_conflict
-}
-
-# aggregate avg on columns
-type package_avg_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by avg() on columns of table "package"
-input package_avg_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# Boolean expression to filter rows from the table "package". All fields are combined with a logical 'AND'.
-input package_bool_exp {
-  _and: [package_bool_exp]
-  _not: package_bool_exp
-  _or: [package_bool_exp]
-  packageId: Int_comparison_exp
-  name: String_comparison_exp
-  photo: String_comparison_exp
-  price: money_comparison_exp
-  type: String_comparison_exp
-}
-
-# unique or primary key constraints on table "package"
-enum package_constraint {
-  # unique or primary key constraint
-  package_pkey
-}
-
-# input type for incrementing integer column in table "package"
-input package_inc_input {
-  packageId: Int
-  price: money
-}
-
-# input type for inserting data into table "package"
-input package_insert_input {
-  packageId: Int
-  name: String
-  photo: String
-  price: money
-  type: String
-}
-
-# aggregate max on columns
-type package_max_fields {
-  packageId: Int
-  name: String
-  photo: String
-  price: money
-  type: String
-}
-
-# order by max() on columns of table "package"
-input package_max_order_by {
-  packageId: order_by
-  name: order_by
-  photo: order_by
-  price: order_by
-  type: order_by
-}
-
-# aggregate min on columns
-type package_min_fields {
-  packageId: Int
-  name: String
-  photo: String
-  price: money
-  type: String
-}
-
-# order by min() on columns of table "package"
-input package_min_order_by {
-  packageId: order_by
-  name: order_by
-  photo: order_by
-  price: order_by
-  type: order_by
-}
-
-# response of any mutation on the table "package"
-type package_mutation_response {
-  # number of affected rows by the mutation
-  affected_rows: Int!
-
-  # data of the affected rows by the mutation
-  returning: [package!]!
-}
-
-# input type for inserting object relation for remote table "package"
-input package_obj_rel_insert_input {
-  data: package_insert_input!
-  on_conflict: package_on_conflict
-}
-
-# on conflict condition type for table "package"
-input package_on_conflict {
-  constraint: package_constraint!
-  update_columns: [package_update_column!]!
-  where: package_bool_exp
-}
-
-# ordering options when selecting data from "package"
-input package_order_by {
-  packageId: order_by
-  name: order_by
-  photo: order_by
-  price: order_by
-  type: order_by
-}
-
-# primary key columns input for table: "package"
-input package_pk_columns_input {
-  packageId: Int!
-}
-
-# select columns of table "package"
-enum package_select_column {
-  # column name
-  packageId
-
-  # column name
-  name
-
-  # column name
-  photo
-
-  # column name
-  price
-
-  # column name
-  type
-}
-
-# input type for updating data in table "package"
-input package_set_input {
-  packageId: Int
-  name: String
-  photo: String
-  price: money
-  type: String
-}
-
-# aggregate stddev on columns
-type package_stddev_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by stddev() on columns of table "package"
-input package_stddev_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# aggregate stddev_pop on columns
-type package_stddev_pop_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by stddev_pop() on columns of table "package"
-input package_stddev_pop_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# aggregate stddev_samp on columns
-type package_stddev_samp_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by stddev_samp() on columns of table "package"
-input package_stddev_samp_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# aggregate sum on columns
-type package_sum_fields {
-  packageId: Int
-  price: money
-}
-
-# order by sum() on columns of table "package"
-input package_sum_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# update columns of table "package"
-enum package_update_column {
-  # column name
-  packageId
-
-  # column name
-  name
-
-  # column name
-  photo
-
-  # column name
-  price
-
-  # column name
-  type
-}
-
-# aggregate var_pop on columns
-type package_var_pop_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by var_pop() on columns of table "package"
-input package_var_pop_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# aggregate var_samp on columns
-type package_var_samp_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by var_samp() on columns of table "package"
-input package_var_samp_order_by {
-  packageId: order_by
-  price: order_by
-}
-
-# aggregate variance on columns
-type package_variance_fields {
-  packageId: Float
-  price: Float
-}
-
-# order by variance() on columns of table "package"
-input package_variance_order_by {
-  packageId: order_by
-  price: order_by
-}
-
 scalar money
 
 # expression to compare columns of type money. All fields are combined with logical 'AND'.
@@ -400,6 +103,318 @@ enum order_by {
 
   # in the descending order, nulls last
   desc_nulls_last
+}
+
+# columns and relationships of "package"
+type package {
+  description: String!
+  duration: String!
+  name: String!
+  packageId: Int!
+  price: money!
+  validity: String!
+}
+
+# aggregated selection of "package"
+type package_aggregate {
+  aggregate: package_aggregate_fields
+  nodes: [package!]!
+}
+
+# aggregate fields of "package"
+type package_aggregate_fields {
+  avg: package_avg_fields
+  count(columns: [package_select_column!], distinct: Boolean): Int
+  max: package_max_fields
+  min: package_min_fields
+  stddev: package_stddev_fields
+  stddev_pop: package_stddev_pop_fields
+  stddev_samp: package_stddev_samp_fields
+  sum: package_sum_fields
+  var_pop: package_var_pop_fields
+  var_samp: package_var_samp_fields
+  variance: package_variance_fields
+}
+
+# order by aggregate values of table "package"
+input package_aggregate_order_by {
+  avg: package_avg_order_by
+  count: order_by
+  max: package_max_order_by
+  min: package_min_order_by
+  stddev: package_stddev_order_by
+  stddev_pop: package_stddev_pop_order_by
+  stddev_samp: package_stddev_samp_order_by
+  sum: package_sum_order_by
+  var_pop: package_var_pop_order_by
+  var_samp: package_var_samp_order_by
+  variance: package_variance_order_by
+}
+
+# input type for inserting array relation for remote table "package"
+input package_arr_rel_insert_input {
+  data: [package_insert_input!]!
+  on_conflict: package_on_conflict
+}
+
+# aggregate avg on columns
+type package_avg_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by avg() on columns of table "package"
+input package_avg_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# Boolean expression to filter rows from the table "package". All fields are combined with a logical 'AND'.
+input package_bool_exp {
+  _and: [package_bool_exp]
+  _not: package_bool_exp
+  _or: [package_bool_exp]
+  description: String_comparison_exp
+  duration: String_comparison_exp
+  name: String_comparison_exp
+  packageId: Int_comparison_exp
+  price: money_comparison_exp
+  validity: String_comparison_exp
+}
+
+# unique or primary key constraints on table "package"
+enum package_constraint {
+  # unique or primary key constraint
+  package_pkey
+}
+
+# input type for incrementing integer column in table "package"
+input package_inc_input {
+  packageId: Int
+  price: money
+}
+
+# input type for inserting data into table "package"
+input package_insert_input {
+  description: String
+  duration: String
+  name: String
+  packageId: Int
+  price: money
+  validity: String
+}
+
+# aggregate max on columns
+type package_max_fields {
+  description: String
+  duration: String
+  name: String
+  packageId: Int
+  price: money
+  validity: String
+}
+
+# order by max() on columns of table "package"
+input package_max_order_by {
+  description: order_by
+  duration: order_by
+  name: order_by
+  packageId: order_by
+  price: order_by
+  validity: order_by
+}
+
+# aggregate min on columns
+type package_min_fields {
+  description: String
+  duration: String
+  name: String
+  packageId: Int
+  price: money
+  validity: String
+}
+
+# order by min() on columns of table "package"
+input package_min_order_by {
+  description: order_by
+  duration: order_by
+  name: order_by
+  packageId: order_by
+  price: order_by
+  validity: order_by
+}
+
+# response of any mutation on the table "package"
+type package_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [package!]!
+}
+
+# input type for inserting object relation for remote table "package"
+input package_obj_rel_insert_input {
+  data: package_insert_input!
+  on_conflict: package_on_conflict
+}
+
+# on conflict condition type for table "package"
+input package_on_conflict {
+  constraint: package_constraint!
+  update_columns: [package_update_column!]!
+  where: package_bool_exp
+}
+
+# ordering options when selecting data from "package"
+input package_order_by {
+  description: order_by
+  duration: order_by
+  name: order_by
+  packageId: order_by
+  price: order_by
+  validity: order_by
+}
+
+# primary key columns input for table: "package"
+input package_pk_columns_input {
+  packageId: Int!
+}
+
+# select columns of table "package"
+enum package_select_column {
+  # column name
+  description
+
+  # column name
+  duration
+
+  # column name
+  name
+
+  # column name
+  packageId
+
+  # column name
+  price
+
+  # column name
+  validity
+}
+
+# input type for updating data in table "package"
+input package_set_input {
+  description: String
+  duration: String
+  name: String
+  packageId: Int
+  price: money
+  validity: String
+}
+
+# aggregate stddev on columns
+type package_stddev_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by stddev() on columns of table "package"
+input package_stddev_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# aggregate stddev_pop on columns
+type package_stddev_pop_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by stddev_pop() on columns of table "package"
+input package_stddev_pop_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# aggregate stddev_samp on columns
+type package_stddev_samp_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by stddev_samp() on columns of table "package"
+input package_stddev_samp_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# aggregate sum on columns
+type package_sum_fields {
+  packageId: Int
+  price: money
+}
+
+# order by sum() on columns of table "package"
+input package_sum_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# update columns of table "package"
+enum package_update_column {
+  # column name
+  description
+
+  # column name
+  duration
+
+  # column name
+  name
+
+  # column name
+  packageId
+
+  # column name
+  price
+
+  # column name
+  validity
+}
+
+# aggregate var_pop on columns
+type package_var_pop_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by var_pop() on columns of table "package"
+input package_var_pop_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# aggregate var_samp on columns
+type package_var_samp_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by var_samp() on columns of table "package"
+input package_var_samp_order_by {
+  packageId: order_by
+  price: order_by
+}
+
+# aggregate variance on columns
+type package_variance_fields {
+  packageId: Float
+  price: Float
+}
+
+# order by variance() on columns of table "package"
+input package_variance_order_by {
+  packageId: order_by
+  price: order_by
 }
 
 # query root

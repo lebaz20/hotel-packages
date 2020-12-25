@@ -95,7 +95,13 @@ const EditPackage = () => {
         if (!props) {
           return <div>Loading...</div>;
         }
-        const { price, name, duration, validity, description } = props.package_by_pk;
+        const {
+          price,
+          name,
+          duration,
+          validity,
+          description,
+        } = props.package_by_pk;
         return (
           <PackageForm
             title="Edit Package Item"

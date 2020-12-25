@@ -84,7 +84,7 @@ const node /*: ConcreteRequest*/ = (function () {
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "2f7770fa60cff4a51102292f59f8c925",
+      cacheID: "b340a72bd0354309b42a50561dba6374",
       id: null,
       metadata: {},
       name: "PackageListDeleteMutation",
@@ -95,6 +95,6 @@ const node /*: ConcreteRequest*/ = (function () {
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '7310de4f553a2892f299b4f04e5a9e4d';
+(node/*: any*/).hash = '6e0618e9373fef2403c775a6955969ee';
 
 module.exports = node;
