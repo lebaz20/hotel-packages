@@ -4,7 +4,7 @@ import { Row } from "react-bootstrap";
 const Header = () => {
   return (
     <Row>
-      <h1>Cafe Menu</h1>
+      <h1>Hotel Packages</h1>
     </Row>
   );
 };

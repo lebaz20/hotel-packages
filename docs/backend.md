@@ -22,12 +22,13 @@ Applies migrations to postgres database.
 
 ## Database schema
 
-### Menu table structure
+### Package table structure
 
 ```
-menuId     integer-autoincrement primary key
-name       text
-type       text
-price      money
-photo      text
+packageId        integer-autoincrement primary key
+name             text
+duration         text
+price            money
+validity         text
+description      text
 ```

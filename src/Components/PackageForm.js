@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Alert, Form, Row, Col, Button } from "react-bootstrap";
-import ImageUploader from "react-images-upload";
 
-const MenuForm = ({
+const PackageForm = ({
   title,
   onSubmit,
-  type: originalType,
+  duration: originalDuration,
+  validity: originalValidity,
+  description: originalDescription,
   name: originalName,
   price: originalPrice,
-  photo: originalPhoto,
 }) => {
-  const [type, setType] = useState(originalType);
+  const [duration, setDuration] = useState(originalDuration);
+  const [validity, setValidity] = useState(originalValidity);
+  const [description, setDescription] = useState(originalDescription);
   const [name, setName] = useState(originalName);
   const [price, setPrice] = useState(originalPrice);
-  const [photo, setPhoto] = useState(originalPhoto);
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
@@ -32,14 +33,14 @@ const MenuForm = ({
       </Row>
       {message && <Alert variant={messageType}>{message}</Alert>}
       <Form
-        encType="multipart/form-data"
         onSubmit={(event) =>
           onSubmit({
             event,
-            type,
+            validity,
+            duration,
+            description,
             name,
             price,
-            photo,
             message,
             messageType,
             setMessage,
@@ -47,25 +48,6 @@ const MenuForm = ({
           })
         }
       >
-        <Form.Group as={Row} controlId="type">
-          <Form.Label column sm={2}>
-            Type
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control
-              as="select"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              required
-            >
-              <option></option>
-              <option value="Side">Side</option>
-              <option value="Main Course">Main Course</option>
-              <option value="Dessert">Dessert</option>
-            </Form.Control>
-          </Col>
-        </Form.Group>
-
         <Form.Group as={Row} controlId="name">
           <Form.Label column sm={2}>
             Name
@@ -95,19 +77,44 @@ const MenuForm = ({
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row} controlId="photo">
+        <Form.Group as={Row} controlId="duration">
           <Form.Label column sm={2}>
-            Photo
+            Duration
           </Form.Label>
           <Col sm={10}>
-            <ImageUploader
-              withIcon={true}
-              withPreview={true}
-              singleImage={true}
-              buttonText="Choose photo"
-              onChange={setPhoto}
-              imgExtension={[".jpeg", ".jpg", ".png"]}
-              maxFileSize={5242880}
+            <Form.Control
+              type="text"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              required
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} controlId="validity">
+          <Form.Label column sm={2}>
+            Validity
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              value={validity}
+              onChange={(e) => setValidity(e.target.value)}
+              required
+            />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} controlId="description">
+          <Form.Label column sm={2}>
+            Description
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </Col>
         </Form.Group>
@@ -122,4 +129,4 @@ const MenuForm = ({
   );
 };
 
-export default MenuForm;
+export default PackageForm;

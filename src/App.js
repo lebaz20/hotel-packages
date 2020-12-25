@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Header from "./Components/Header";
-import MenuList from "./Components/MenuList";
-import NewMenu from "./Components/NewMenu";
-import EditMenu from "./Components/EditMenu";
+import PackageList from "./Components/PackageList";
+import NewPackage from "./Components/NewPackage";
+import EditPackage from "./Components/EditPackage";
 
 const App = () => {
   return (
@@ -12,9 +12,9 @@ const App = () => {
       <Header />
       <Router>
         <Switch>
-          <Route exact path="/" component={MenuList} />
-          <Route path="/new" component={NewMenu} />
-          <Route path="/edit/:id" component={EditMenu} />
+          <Route exact path="/" component={PackageList} />
+          <Route path="/new" component={NewPackage} />
+          <Route path="/edit/:id" component={EditPackage} />
         </Switch>
       </Router>
     </Container>

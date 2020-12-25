@@ -1,6 +1,6 @@
-# cafe-menu
+# hotel-packages
 
-Basic cafe menu application built on Hasura (graphql) in back-end and CRA (reactjs) in front-end.
+Basic Hotel Packages application built on Hasura (graphql) in back-end and CRA (reactjs) in front-end with background sync support.
 
 - Run `./scripts/start.sh` to start the application.
 

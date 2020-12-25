@@ -8,26 +8,26 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type MenuListDeleteMutationVariables = {|
-  menuId: number
+export type PackageListDeleteMutationVariables = {|
+  packageId: number
 |};
-export type MenuListDeleteMutationResponse = {|
-  +delete_menu_by_pk: ?{|
-    +menuId: number
+export type PackageListDeleteMutationResponse = {|
+  +delete_package_by_pk: ?{|
+    +packageId: number
   |}
 |};
-export type MenuListDeleteMutation = {|
-  variables: MenuListDeleteMutationVariables,
-  response: MenuListDeleteMutationResponse,
+export type PackageListDeleteMutation = {|
+  variables: PackageListDeleteMutationVariables,
+  response: PackageListDeleteMutationResponse,
 |};
 */
 
 /*
-mutation MenuListDeleteMutation(
-  $menuId: Int!
+mutation PackageListDeleteMutation(
+  $packageId: Int!
 ) {
-  delete_menu_by_pk(menuId: $menuId) {
-    menuId
+  delete_package_by_pk(packageId: $packageId) {
+    packageId
   }
 }
 */
@@ -37,7 +37,7 @@ const node /*: ConcreteRequest*/ = (function () {
       {
         defaultValue: null,
         kind: "LocalArgument",
-        name: "menuId",
+        name: "packageId",
       },
     ],
     v1 = [
@@ -46,20 +46,20 @@ const node /*: ConcreteRequest*/ = (function () {
         args: [
           {
             kind: "Variable",
-            name: "menuId",
-            variableName: "menuId",
+            name: "packageId",
+            variableName: "packageId",
           },
         ],
-        concreteType: "menu",
+        concreteType: "package",
         kind: "LinkedField",
-        name: "delete_menu_by_pk",
+        name: "delete_package_by_pk",
         plural: false,
         selections: [
           {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "menuId",
+            name: "packageId",
             storageKey: null,
           },
         ],
@@ -71,7 +71,7 @@ const node /*: ConcreteRequest*/ = (function () {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Fragment",
       metadata: null,
-      name: "MenuListDeleteMutation",
+      name: "PackageListDeleteMutation",
       selections: (v1 /*: any*/),
       type: "mutation_root",
       abstractKey: null,
@@ -80,17 +80,17 @@ const node /*: ConcreteRequest*/ = (function () {
     operation: {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Operation",
-      name: "MenuListDeleteMutation",
+      name: "PackageListDeleteMutation",
       selections: (v1 /*: any*/),
     },
     params: {
       cacheID: "2f7770fa60cff4a51102292f59f8c925",
       id: null,
       metadata: {},
-      name: "MenuListDeleteMutation",
+      name: "PackageListDeleteMutation",
       operationKind: "mutation",
       text:
-        "mutation MenuListDeleteMutation(\n  $menuId: Int!\n) {\n  delete_menu_by_pk(menuId: $menuId) {\n    menuId\n  }\n}\n",
+        "mutation PackageListDeleteMutation(\n  $packageId: Int!\n) {\n  delete_package_by_pk(packageId: $packageId) {\n    packageId\n  }\n}\n",
     },
   };
 })();

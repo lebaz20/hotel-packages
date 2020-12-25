@@ -2,19 +2,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import graphql from "babel-plugin-relay/macro";
 import { QueryRenderer, commitMutation } from "react-relay";
-import MenuForm from "./MenuForm";
+import PackageForm from "./PackageForm";
 import environment from "../Services/Relay/environment";
-import upload from "../Services/imageUploader";
 
-const EditMenu = () => {
+const EditPackage = () => {
   const { id } = useParams();
 
   const onSubmit = async ({
     event,
-    type,
+    duration,
+    validity,
+    description,
     name,
     price,
-    photo,
     message,
     setMessage,
     messageType,
@@ -22,45 +22,31 @@ const EditMenu = () => {
   }) => {
     event.preventDefault();
 
-    let photoUrl;
-    if (Array.isArray(photo) && photo.length > 0) {
-      try {
-        photoUrl = await upload(photo);
-      } catch (e) {
-        console.error(e);
-        setMessage("Photo upload failed!");
-        setMessageType("danger");
-        return false;
-      }
-    }
-
     const mutation = graphql`
-      mutation EditMenuMutation(
-        $_set: menu_set_input!
-        $pk_columns: menu_pk_columns_input!
+      mutation EditPackageMutation(
+        $_set: package_set_input!
+        $pk_columns: package_pk_columns_input!
       ) {
-        update_menu_by_pk(_set: $_set, pk_columns: $pk_columns) {
-          menuId
+        update_package_by_pk(_set: $_set, pk_columns: $pk_columns) {
+          packageId
           name
-          photo
           price
-          type
+          duration
+          validity
+          description
         }
       }
     `;
 
     let updateResponse;
-    const updatedMenu = { type, name, price };
-    if (photoUrl) {
-      updatedMenu.photo = photoUrl;
-    }
+    const updatedPackage = { duration, validity, description, name, price };
     try {
       updateResponse = await new Promise((resolve, reject) =>
         commitMutation(environment, {
           mutation,
           variables: {
-            pk_columns: { menuId: id },
-            _set: updatedMenu,
+            pk_columns: { packageId: id },
+            _set: updatedPackage,
           },
           onCompleted: (response, errors) => {
             if (errors) {
@@ -79,7 +65,7 @@ const EditMenu = () => {
     }
 
     setMessage(
-      `Menu item #${updateResponse.update_menu_by_pk.menuId} saved successfully.`
+      `Package item #${updateResponse.update_package_by_pk.packageId} saved successfully.`
     );
     setMessageType("success");
     return true;
@@ -89,17 +75,18 @@ const EditMenu = () => {
     <QueryRenderer
       environment={environment}
       query={graphql`
-        query EditMenuQuery($menuId: Int!) {
-          menu_by_pk(menuId: $menuId) {
-            _id: menuId
+        query EditPackageQuery($packageId: Int!) {
+          package_by_pk(packageId: $packageId) {
+            _id: packageId
             name
-            photo
             price
-            type
+            duration
+            validity
+            description
           }
         }
       `}
-      variables={{ menuId: id }}
+      variables={{ packageId: id }}
       render={({ error, props }) => {
         if (error) {
           console.error(error);
@@ -108,15 +95,16 @@ const EditMenu = () => {
         if (!props) {
           return <div>Loading...</div>;
         }
-        const { price, photo, name, type } = props.menu_by_pk;
+        const { price, name, duration, validity, description } = props.package_by_pk;
         return (
-          <MenuForm
-            title="Edit Menu Item"
+          <PackageForm
+            title="Edit Package Item"
             onSubmit={onSubmit}
-            type={type}
+            duration={duration}
+            validity={validity}
+            description={description}
             name={name}
             price={price.substr(1)}
-            photo={photo}
           />
         );
       }}
@@ -124,4 +112,4 @@ const EditMenu = () => {
   );
 };
 
-export default EditMenu;
+export default EditPackage;

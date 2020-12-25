@@ -8,9 +8,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type AppMenusQueryVariables = {||};
-export type AppMenusQueryResponse = {|
-  +menu: $ReadOnlyArray<{|
+export type AppPackagesQueryVariables = {||};
+export type AppPackagesQueryResponse = {|
+  +package: $ReadOnlyArray<{|
     +_id: number,
     +name: string,
     +photo: string,
@@ -18,15 +18,15 @@ export type AppMenusQueryResponse = {|
     +type: string,
   |}>
 |};
-export type AppMenusQuery = {|
-  variables: AppMenusQueryVariables,
-  response: AppMenusQueryResponse,
+export type AppPackagesQuery = {|
+  variables: AppPackagesQueryVariables,
+  response: AppPackagesQueryResponse,
 |};
 */
 
 /*
-query AppMenusQuery {
-  menu {
+query AppPackagesQuery {
+  package {
     _id: id
     name
     photo
@@ -41,9 +41,9 @@ const node /*: ConcreteRequest*/ = (function () {
     {
       alias: null,
       args: null,
-      concreteType: "menu",
+      concreteType: "package",
       kind: "LinkedField",
-      name: "menu",
+      name: "package",
       plural: true,
       selections: [
         {
@@ -90,7 +90,7 @@ const node /*: ConcreteRequest*/ = (function () {
       argumentDefinitions: [],
       kind: "Fragment",
       metadata: null,
-      name: "AppMenusQuery",
+      name: "AppPackagesQuery",
       selections: (v0 /*: any*/),
       type: "query_root",
       abstractKey: null,
@@ -99,17 +99,17 @@ const node /*: ConcreteRequest*/ = (function () {
     operation: {
       argumentDefinitions: [],
       kind: "Operation",
-      name: "AppMenusQuery",
+      name: "AppPackagesQuery",
       selections: (v0 /*: any*/),
     },
     params: {
       cacheID: "f23934410bdf4cd3f8a65ac88f5017b0",
       id: null,
       metadata: {},
-      name: "AppMenusQuery",
+      name: "AppPackagesQuery",
       operationKind: "query",
       text:
-        "query AppMenusQuery {\n  menu {\n    _id: id\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "query AppPackagesQuery {\n  package {\n    _id: id\n    name\n    photo\n    price\n    type\n  }\n}\n",
     },
   };
 })();

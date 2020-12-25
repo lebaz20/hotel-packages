@@ -8,34 +8,41 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type EditMenuQueryVariables = {|
-  menuId: number
+export type package_insert_input = {|
+  packageId?: ?number,
+  name?: ?string,
+  photo?: ?string,
+  price?: ?any,
+  type?: ?string,
 |};
-export type EditMenuQueryResponse = {|
-  +menu_by_pk: ?{|
-    +_id: number,
+export type NewPackageMutationVariables = {|
+  object: package_insert_input
+|};
+export type NewPackageMutationResponse = {|
+  +insert_package_one: ?{|
+    +packageId: number,
     +name: string,
-    +photo: string,
-    +price: any,
     +type: string,
+    +price: any,
+    +photo: string,
   |}
 |};
-export type EditMenuQuery = {|
-  variables: EditMenuQueryVariables,
-  response: EditMenuQueryResponse,
+export type NewPackageMutation = {|
+  variables: NewPackageMutationVariables,
+  response: NewPackageMutationResponse,
 |};
 */
 
 /*
-query EditMenuQuery(
-  $menuId: Int!
+mutation NewPackageMutation(
+  $object: package_insert_input!
 ) {
-  menu_by_pk(menuId: $menuId) {
-    _id: menuId
+  insert_package_one(object: $object) {
+    packageId
     name
-    photo
-    price
     type
+    price
+    photo
   }
 }
 */
@@ -45,7 +52,7 @@ const node /*: ConcreteRequest*/ = (function () {
       {
         defaultValue: null,
         kind: "LocalArgument",
-        name: "menuId",
+        name: "object",
       },
     ],
     v1 = [
@@ -54,20 +61,20 @@ const node /*: ConcreteRequest*/ = (function () {
         args: [
           {
             kind: "Variable",
-            name: "menuId",
-            variableName: "menuId",
+            name: "object",
+            variableName: "object",
           },
         ],
-        concreteType: "menu",
+        concreteType: "package",
         kind: "LinkedField",
-        name: "menu_by_pk",
+        name: "insert_package_one",
         plural: false,
         selections: [
           {
-            alias: "_id",
+            alias: null,
             args: null,
             kind: "ScalarField",
-            name: "menuId",
+            name: "packageId",
             storageKey: null,
           },
           {
@@ -81,7 +88,7 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "photo",
+            name: "type",
             storageKey: null,
           },
           {
@@ -95,7 +102,7 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "type",
+            name: "photo",
             storageKey: null,
           },
         ],
@@ -107,30 +114,30 @@ const node /*: ConcreteRequest*/ = (function () {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Fragment",
       metadata: null,
-      name: "EditMenuQuery",
+      name: "NewPackageMutation",
       selections: (v1 /*: any*/),
-      type: "query_root",
+      type: "mutation_root",
       abstractKey: null,
     },
     kind: "Request",
     operation: {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Operation",
-      name: "EditMenuQuery",
+      name: "NewPackageMutation",
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "2f741d111bbdcb4355d0f1a7a7e01588",
+      cacheID: "b60e6cbae673a9e33e534ee6b35cf0f3",
       id: null,
       metadata: {},
-      name: "EditMenuQuery",
-      operationKind: "query",
+      name: "NewPackageMutation",
+      operationKind: "mutation",
       text:
-        "query EditMenuQuery(\n  $menuId: Int!\n) {\n  menu_by_pk(menuId: $menuId) {\n    _id: menuId\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "mutation NewPackageMutation(\n  $object: package_insert_input!\n) {\n  insert_package_one(object: $object) {\n    packageId\n    name\n    type\n    price\n    photo\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9f7228beba6c6438738920598eb4677b';
+(node/*: any*/).hash = '42c0b9472b12b7fdb82cb2ae22fb963d';
 
 module.exports = node;

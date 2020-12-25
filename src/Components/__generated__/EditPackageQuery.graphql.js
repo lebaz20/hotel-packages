@@ -8,41 +8,34 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type menu_insert_input = {|
-  menuId?: ?number,
-  name?: ?string,
-  photo?: ?string,
-  price?: ?any,
-  type?: ?string,
+export type EditPackageQueryVariables = {|
+  packageId: number
 |};
-export type NewMenuMutationVariables = {|
-  object: menu_insert_input
-|};
-export type NewMenuMutationResponse = {|
-  +insert_menu_one: ?{|
-    +menuId: number,
+export type EditPackageQueryResponse = {|
+  +package_by_pk: ?{|
+    +_id: number,
     +name: string,
-    +type: string,
-    +price: any,
     +photo: string,
+    +price: any,
+    +type: string,
   |}
 |};
-export type NewMenuMutation = {|
-  variables: NewMenuMutationVariables,
-  response: NewMenuMutationResponse,
+export type EditPackageQuery = {|
+  variables: EditPackageQueryVariables,
+  response: EditPackageQueryResponse,
 |};
 */
 
 /*
-mutation NewMenuMutation(
-  $object: menu_insert_input!
+query EditPackageQuery(
+  $packageId: Int!
 ) {
-  insert_menu_one(object: $object) {
-    menuId
+  package_by_pk(packageId: $packageId) {
+    _id: packageId
     name
-    type
-    price
     photo
+    price
+    type
   }
 }
 */
@@ -52,7 +45,7 @@ const node /*: ConcreteRequest*/ = (function () {
       {
         defaultValue: null,
         kind: "LocalArgument",
-        name: "object",
+        name: "packageId",
       },
     ],
     v1 = [
@@ -61,20 +54,20 @@ const node /*: ConcreteRequest*/ = (function () {
         args: [
           {
             kind: "Variable",
-            name: "object",
-            variableName: "object",
+            name: "packageId",
+            variableName: "packageId",
           },
         ],
-        concreteType: "menu",
+        concreteType: "package",
         kind: "LinkedField",
-        name: "insert_menu_one",
+        name: "package_by_pk",
         plural: false,
         selections: [
           {
-            alias: null,
+            alias: "_id",
             args: null,
             kind: "ScalarField",
-            name: "menuId",
+            name: "packageId",
             storageKey: null,
           },
           {
@@ -88,7 +81,7 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "type",
+            name: "photo",
             storageKey: null,
           },
           {
@@ -102,7 +95,7 @@ const node /*: ConcreteRequest*/ = (function () {
             alias: null,
             args: null,
             kind: "ScalarField",
-            name: "photo",
+            name: "type",
             storageKey: null,
           },
         ],
@@ -114,30 +107,30 @@ const node /*: ConcreteRequest*/ = (function () {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Fragment",
       metadata: null,
-      name: "NewMenuMutation",
+      name: "EditPackageQuery",
       selections: (v1 /*: any*/),
-      type: "mutation_root",
+      type: "query_root",
       abstractKey: null,
     },
     kind: "Request",
     operation: {
       argumentDefinitions: (v0 /*: any*/),
       kind: "Operation",
-      name: "NewMenuMutation",
+      name: "EditPackageQuery",
       selections: (v1 /*: any*/),
     },
     params: {
-      cacheID: "b60e6cbae673a9e33e534ee6b35cf0f3",
+      cacheID: "2f741d111bbdcb4355d0f1a7a7e01588",
       id: null,
       metadata: {},
-      name: "NewMenuMutation",
-      operationKind: "mutation",
+      name: "EditPackageQuery",
+      operationKind: "query",
       text:
-        "mutation NewMenuMutation(\n  $object: menu_insert_input!\n) {\n  insert_menu_one(object: $object) {\n    menuId\n    name\n    type\n    price\n    photo\n  }\n}\n",
+        "query EditPackageQuery(\n  $packageId: Int!\n) {\n  package_by_pk(packageId: $packageId) {\n    _id: packageId\n    name\n    photo\n    price\n    type\n  }\n}\n",
     },
   };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '42c0b9472b12b7fdb82cb2ae22fb963d';
+(node/*: any*/).hash = '9f7228beba6c6438738920598eb4677b';
 
 module.exports = node;

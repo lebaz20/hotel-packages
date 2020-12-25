@@ -1,17 +1,17 @@
 import React from "react";
 import graphql from "babel-plugin-relay/macro";
 import { commitMutation } from "react-relay";
-import MenuForm from "./MenuForm";
+import PackageForm from "./PackageForm";
 import environment from "../Services/Relay/environment";
-import upload from "../Services/imageUploader";
 
-const NewMenu = () => {
+const NewPackage = () => {
   const onSubmit = async ({
     event,
-    type,
+    duration,
+    validity,
+    description,
     name,
     price,
-    photo,
     message,
     setMessage,
     messageType,
@@ -19,29 +19,15 @@ const NewMenu = () => {
   }) => {
     event.preventDefault();
 
-    if (!photo || photo.length === 0) {
-      setMessage("Photo select a photo.");
-      setMessageType("danger");
-      return false;
-    }
-    let photoUrl;
-    try {
-      photoUrl = await upload(photo);
-    } catch (e) {
-      console.error(e);
-      setMessage("Photo upload failed!");
-      setMessageType("danger");
-      return false;
-    }
-
     const mutation = graphql`
-      mutation NewMenuMutation($object: menu_insert_input!) {
-        insert_menu_one(object: $object) {
-          menuId
+      mutation NewPackageMutation($object: package_insert_input!) {
+        insert_package_one(object: $object) {
+          packageId
           name
-          type
+          duration
+          validity
+          description
           price
-          photo
         }
       }
     `;
@@ -52,7 +38,7 @@ const NewMenu = () => {
         commitMutation(environment, {
           mutation,
           variables: {
-            object: { type, name, price, photo: photoUrl },
+            object: { duration, validity, description, name, price },
           },
           onCompleted: (response, errors) => {
             if (errors) {
@@ -71,13 +57,13 @@ const NewMenu = () => {
     }
 
     setMessage(
-      `Menu item #${insertResponse.insert_menu_one.menuId} saved successfully.`
+      `Package item #${insertResponse.insert_package_one.packageId} saved successfully.`
     );
     setMessageType("success");
     return true;
   };
 
-  return <MenuForm title="Add Menu Item" onSubmit={onSubmit} />;
+  return <PackageForm title="Add Package Item" onSubmit={onSubmit} />;
 };
 
-export default NewMenu;
+export default NewPackage;

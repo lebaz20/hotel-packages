@@ -4,17 +4,17 @@ import { Alert, Row, Col, Button } from "react-bootstrap";
 import graphql from "babel-plugin-relay/macro";
 import { QueryRenderer, commitMutation } from "react-relay";
 import environment from "../Services/Relay/environment";
-import MenuItem from "./MenuItem";
+import PackageItem from "./PackageItem";
 
-const MenuList = () => {
+const PackageList = () => {
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
-  const onDelete = async (menuId) => {
+  const onDelete = async (packageId) => {
     const mutation = graphql`
-      mutation MenuListDeleteMutation($menuId: Int!) {
-        delete_menu_by_pk(menuId: $menuId) {
-          menuId
+      mutation PackageListDeleteMutation($packageId: Int!) {
+        delete_package_by_pk(packageId: $packageId) {
+          packageId
         }
       }
     `;
@@ -25,7 +25,7 @@ const MenuList = () => {
         commitMutation(environment, {
           mutation,
           variables: {
-            menuId,
+            packageId,
           },
           onCompleted: (response, errors) => {
             if (errors) {
@@ -44,7 +44,7 @@ const MenuList = () => {
     }
 
     setMessage(
-      `Menu item #${deleteResponse.delete_menu_by_pk.menuId} deleted successfully.`
+      `Package item #${deleteResponse.delete_package_by_pk.packageId} deleted successfully.`
     );
     setMessageType("success");
     setTimeout(() => {
@@ -57,11 +57,11 @@ const MenuList = () => {
     <>
       <Row>
         <Col>
-          <h2>Menu</h2>
+          <h2>Package</h2>
         </Col>
         <Col md={{ span: 2, offset: 6 }}>
           <Link to="/new">
-            <Button>Add Menu Item</Button>
+            <Button>Add Package Item</Button>
           </Link>
         </Col>
       </Row>
@@ -69,13 +69,14 @@ const MenuList = () => {
       <QueryRenderer
         environment={environment}
         query={graphql`
-          query MenuListQuery {
-            menu {
-              _id: menuId
+          query PackageListQuery {
+            package {
+              _id: packageId
               name
-              photo
               price
-              type
+              duration
+              validity
+              description
             }
           }
         `}
@@ -89,16 +90,16 @@ const MenuList = () => {
             return <div>Loading...</div>;
           }
           const size = 3;
-          const menuChunks = Array.from(
-            { length: Math.ceil(props.menu.length / size) },
+          const packageChunks = Array.from(
+            { length: Math.ceil(props.package.length / size) },
             (value, index) =>
-              props.menu.slice(index * size, index * size + size)
+              props.package.slice(index * size, index * size + size)
           );
-          return menuChunks.map((menus) => (
-            <Row key={menus[0]._id}>
-              {menus.map((menu) => (
-                <Col md={4} key={menu._id}>
-                  <MenuItem menu={menu} onDelete={onDelete} />
+          return packageChunks.map((packages) => (
+            <Row key={packages[0]._id}>
+              {packages.map((package) => (
+                <Col md={4} key={package._id}>
+                  <PackageItem package={package} onDelete={onDelete} />
                 </Col>
               ))}
             </Row>
@@ -109,4 +110,4 @@ const MenuList = () => {
   );
 };
 
-export default MenuList;
+export default PackageList;

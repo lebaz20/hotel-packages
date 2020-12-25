@@ -1,14 +1,24 @@
-describe("Add menu item", () => {
-  const uniqueName = `Special dish${new Date().getTime()}`;
+describe("Add package item", () => {
+  const uniqueString = ${new Date().getTime()};
+  const uniqueName = `package${uniqueString}`;
+  const uniqueDuration = `${uniqueString} nights`;
+  const uniqueValidity = `valid till ${uniqueString}`;
+  const uniqueDescription = `full description ${uniqueString}`;
   const uniquePrice = `11.9${Math.floor(Math.random() * 10)}`;
-  const types = ["Side", "Main Course", "Dessert"];
-  const uniqueType = types[Math.floor(Math.random() * types.length)];
   it("Should fill form as expected", () => {
     cy.visit("/new");
-    cy.get("#type")
-      .select(uniqueType)
+    cy.get("#duration")
+      .select(uniqueDuration)
       .invoke("val")
-      .should("deep.equal", uniqueType);
+      .should("deep.equal", uniqueDuration);
+    cy.get("#validity")
+      .select(uniqueValidity)
+      .invoke("val")
+      .should("deep.equal", uniqueValidity);
+    cy.get("#description")
+      .select(uniqueDescription)
+      .invoke("val")
+      .should("deep.equal", uniqueDescription);
     cy.get("#name")
       .type(uniqueName)
       .invoke("val")
@@ -17,14 +27,6 @@ describe("Add menu item", () => {
       .type(uniquePrice)
       .invoke("val")
       .should("deep.equal", uniquePrice);
-    cy.fixture("test.jpeg").then((fileContent) => {
-      cy.get('input[type="file"]').attachFile({
-        fileContent: fileContent.toString(),
-        fileName: `${uniqueName}.jpeg`,
-        mimeType: "image/jpg",
-      });
-      cy.get("div.deleteImage").should("be.visible");
-    });
     cy.get("form").submit().wait(5000);
   });
   it("Should display success message", () => {
@@ -32,7 +34,7 @@ describe("Add menu item", () => {
       .should("be.visible")
       .should("have", "saved successfully");
   });
-  it("Should be displayed in menu list", () => {
+  it("Should be displayed in package list", () => {
     cy.visit("/").wait(5000);
     cy.get("div.card-title").should("be.visible").should("contain", uniqueName);
     cy.get("div.card-title")

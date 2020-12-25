@@ -8,9 +8,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type MenuListQueryVariables = {||};
-export type MenuListQueryResponse = {|
-  +menu: $ReadOnlyArray<{|
+export type PackageListQueryVariables = {||};
+export type PackageListQueryResponse = {|
+  +package: $ReadOnlyArray<{|
     +_id: number,
     +name: string,
     +photo: string,
@@ -18,16 +18,16 @@ export type MenuListQueryResponse = {|
     +type: string,
   |}>
 |};
-export type MenuListQuery = {|
-  variables: MenuListQueryVariables,
-  response: MenuListQueryResponse,
+export type PackageListQuery = {|
+  variables: PackageListQueryVariables,
+  response: PackageListQueryResponse,
 |};
 */
 
 /*
-query MenuListQuery {
-  menu {
-    _id: menuId
+query PackageListQuery {
+  package {
+    _id: packageId
     name
     photo
     price
@@ -41,16 +41,16 @@ const node /*: ConcreteRequest*/ = (function () {
     {
       alias: null,
       args: null,
-      concreteType: "menu",
+      concreteType: "package",
       kind: "LinkedField",
-      name: "menu",
+      name: "package",
       plural: true,
       selections: [
         {
           alias: "_id",
           args: null,
           kind: "ScalarField",
-          name: "menuId",
+          name: "packageId",
           storageKey: null,
         },
         {
@@ -90,7 +90,7 @@ const node /*: ConcreteRequest*/ = (function () {
       argumentDefinitions: [],
       kind: "Fragment",
       metadata: null,
-      name: "MenuListQuery",
+      name: "PackageListQuery",
       selections: (v0 /*: any*/),
       type: "query_root",
       abstractKey: null,
@@ -99,17 +99,17 @@ const node /*: ConcreteRequest*/ = (function () {
     operation: {
       argumentDefinitions: [],
       kind: "Operation",
-      name: "MenuListQuery",
+      name: "PackageListQuery",
       selections: (v0 /*: any*/),
     },
     params: {
       cacheID: "be925693c454ccf2ef2cd823b5ed035c",
       id: null,
       metadata: {},
-      name: "MenuListQuery",
+      name: "PackageListQuery",
       operationKind: "query",
       text:
-        "query MenuListQuery {\n  menu {\n    _id: menuId\n    name\n    photo\n    price\n    type\n  }\n}\n",
+        "query PackageListQuery {\n  package {\n    _id: packageId\n    name\n    photo\n    price\n    type\n  }\n}\n",
     },
   };
 })();
