@@ -1,0 +1,77 @@
+{
+  "name": "cafe-menu",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "babel-plugin-relay": "^10.0.1",
+    "bootstrap": "^4.5.2",
+    "graphql": "^15.3.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
+    "react-dom": "^16.13.1",
+    "react-images-upload": "^1.2.8",
+    "react-relay": "^10.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint-fix": "yarn lint --fix",
+    "prettier-fix": "prettier --write \"./**/*.{js,jsx,json,css,scss,md}\"",
+    "relay": "relay-compiler --src ./src --schema ./gq_data/schema.graphql",
+    "generate-schema": "gq http://localhost:8080/v1/graphql --introspect > gq_data/schema.graphql",
+    "export-metadata": "hasura metadata export --skip-update-check --project ./hasura",
+    "apply-metadata": "hasura metadata apply --skip-update-check --project ./hasura",
+    "apply-migrations": "hasura migrate apply --skip-update-check --project ./hasura"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "cy": false,
+      "Cypress": false
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "cypress-file-upload": "^4.0.7",
+    "graphqurl": "^0.3.3",
+    "hasura-cli": "^1.3.0",
+    "relay-compiler": "^10.0.1",
+    "relay-config": "^10.0.1"
+  }
+}

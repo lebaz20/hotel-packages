@@ -1,0 +1,4 @@
+{
+  "baseUrl": "http://frontend:3000",
+  "chromeWebSecurity": false
+}
