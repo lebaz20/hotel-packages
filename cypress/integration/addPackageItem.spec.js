@@ -8,15 +8,15 @@ describe("Add package item", () => {
   it("Should fill form as expected", () => {
     cy.visit("/new");
     cy.get("#duration")
-      .select(uniqueDuration)
+      .type(uniqueDuration)
       .invoke("val")
       .should("deep.equal", uniqueDuration);
     cy.get("#validity")
-      .select(uniqueValidity)
+      .type(uniqueValidity)
       .invoke("val")
       .should("deep.equal", uniqueValidity);
     cy.get("#description")
-      .select(uniqueDescription)
+      .type(uniqueDescription)
       .invoke("val")
       .should("deep.equal", uniqueDescription);
     cy.get("#name")
