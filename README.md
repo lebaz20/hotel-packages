@@ -1,15 +1,27 @@
-# hotel-packages
+# Hotel packages
 
-Basic Hotel Packages application built on Hasura (graphql) in back-end and CRA (reactjs) in front-end with background sync support.
+Basic Hotel Packages application built on Hasura (GraphQL) in back-end and CRA (ReactJS) in front-end with background sync support.
 
-- Run `./scripts/start.sh` to start the application.
+## **Selected Technologies:**
 
-- Run `./scripts/test.sh` to run feature tests.
+- Backend: [Hasura instant GraphQL API](https://hasura.io/)
 
-Not that, We rely on having docker installed on the host machine. All parts of the application run through docker images to avoid relying much on the host machine itself.
+- Database: [Postgres](https://www.postgresql.org/)
 
-For more details, check:
+- Frontend: [Create React App](https://create-react-app.dev/)
 
-- [Back-end](docs/backend.md).
+- Environment: [Docker](https://www.docker.com/)
 
-- [Front-end](docs/frontend.md).
+- E2E test: [Cypress](https://www.cypress.io/)
+
+## **Main Scripts:**
+
+- Run `./scripts/start.sh` to install dependencies and start the application.
+
+- Run `./scripts/test.sh` to run e2e tests.
+
+### For more details, check:
+
+- [Back-end usage](docs/backend.md).
+
+- [Front-end usage](docs/frontend.md).
