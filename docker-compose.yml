@@ -29,7 +29,9 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
+    ## uncomment next line for local development
     command: "./scripts/start-frontend.sh"
+    # command: "./scripts/serve-frontend.sh"
     working_dir: /app
     volumes:
       - ./:/app
